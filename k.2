@@ -1,0 +1,87 @@
+import pandas as pd
+
+#initialize data
+
+data1 = {
+    'Make':['atv/utv/snow'],
+    'Model':['All Model'],
+    'Vendor Code':['NACH'],
+    'Vendor Name':['NACHMAN INTERNATIONAL CO. LTD'],
+    'Component':['Gas Shock Assembly'],
+    'Typesof Vehicle': ['FRONT TRACK'],
+    
+    'MPN':['1101069'],
+    
+    'AD LIST ITEM NUMBER':['SU-04330S'],
+    
+    'Vendor Notes':['OEM# 503189117, 503189271, 503189282, 503194270, 503195275, 503195855; OPEN:373MM (14.68") , STROKE:110MM (4.33"); TUBE:42.6MM (1.68") , SHAFT.D:12.5MM (0.49"); SPRING:O.D.:8.0MM (0.31")/WIRE O.D.:74MM (2.91").; TOP/BOTTOM HOLE:10.1/17.5MM (0.40" / 0.69"); TOP/BOTTOM IDTH:30/26.5MM (1.18" / 1.04").']
+}
+
+#For this column = 'Model':['All Model']
+#List All Models
+list_models = [
+
+
+'MX Z 600 R Sport',
+'MX Z 600 R X',
+'MX Z 600RS',
+'MX Z X-RS E-TEC 800R',
+'Renegade Backcountry X E-TEC 600 HO',
+'Renegade Backcountry E-TEC 600 HO',
+'Renegade Adrenaline E-TEC 600 HO',
+'MX Z TNT E-TEC 800R',
+'Renegade Enduro E-TEC 800R',
+'MX Z Blizzard E-TEC 800R',
+'Renegade X E-TEC 850',
+'MX Z X E-TEC 850',
+'MX Z TNT E-TEC 850',
+'Renegade X-RS E-TEC 850',
+'Renegade Backcountry X E-TEC 850',
+'Renegade Backcountry E-TEC 850',
+'MX Z X-RS E-TEC 850',
+'MX Z Blizzard E-TEC 850',
+'MX Z Blizzard E-TEC 600R',
+'MX Z TNT E-TEC 600R',
+'MX Z X E-TEC 600R',
+'MX Z X-RS E-TEC 600R',
+'Renegade Adrenaline E-TEC 600R',
+'Renegade Enduro E-TEC 600R',
+'Renegade Enduro E-TEC 850',
+'Renegade X E-TEC 600R',
+'Renegade X-RS with Comp Package E-TEC 600R',
+'Renegade Adrenaline ACE 900',
+'Renegade Enduro ACE 900',
+'Renegade Adrenaline ACE 900 Turbo',
+'Renegade Enduro ACE 900 Turbo',
+'Renegade X ACE 900 Turbo',
+'Renegade X-RS ACE 900 Turbo',
+'Renegade Adrenaline ACE 900 Turbo R',
+'Renegade X-RS ACE 900 Turbo R',
+'Renegade Enduro ACE 900 Turbo R',
+'Renegade X ACE 900 Turbo R'
+
+
+]
+
+#Range of Years in Raw Data given
+
+years = list(range(2021,2024))
+
+#Functions/Syntax to Generate the Dataframe/ Tables
+
+def generate_df(model, data, year):
+    data_copy = data.copy()
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+dfs=[]
+for year in years:
+    df1 = pd.concat([generate_df(model,data1, year) for model in list_models], ignore_index = True)
+    dfs.append(df1)
+
+#Concatenate all DataFrames or Tables created
+final_df = pd.concat(dfs, ignore_index = True)
+                     
+#Display or Print 
+final_df
