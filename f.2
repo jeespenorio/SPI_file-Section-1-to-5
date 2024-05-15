@@ -1,0 +1,65 @@
+import pandas as pd
+
+#initialize data
+
+data1 = {
+    'Make':['atv/utv/snow'],
+    'Model':['All Model'],
+    'Vendor Code':['NACH'],
+    'Vendor Name':['NACHMAN INTERNATIONAL CO. LTD'],
+    'Component':['Gas Shock Assembly'],
+    'Typesof Vehicle': ['FRONT SKI'],
+    
+    'MPN':['999647'],
+    
+    'AD LIST ITEM NUMBER':['SU-08248S'],
+    
+    'Vendor Notes':['OEM# 1603-889, 1604-262, 2703-092, 2703-233, 2703-264, 2703-265, 3703-566; SHOCK OPEN:445MM (17.52"), STROKE:150MM (5.91"), TUBE O.D.:42MM (1.65"), SHAFT O.D.:12.5MM (0.49"). TOP/BOTTOM HOLE:14.5MM (0.57"), TOP/BOTTOM WIDTH:24.6MM (0.97"), RENTAINER O.D.:56.5/73MM (2.22" / 2.87").']
+}
+
+#For this column = 'Model':['All Model']
+#List All Models
+list_models = [
+
+
+'Bearcat 2000 LT',
+'Bearcat 2000 XT',
+'Bearcat 2000 XTE',
+'Bearcat 2000 LT ES',
+'Bearcat 2000 XT ES',
+'Bearcat 570 Long Track',
+'Bearcat 570 XT',
+'Bearcat 570',
+'Bearcat 570 XTE',
+'F5 EFI LXR',
+'F5 EFI',
+'F570',
+'Lynx 2000 LT',
+'Lynx 2000 LT ES',
+'T500',
+'T570'
+
+]
+
+#Range of Years in Raw Data given
+
+years = list(range(2007,2021))
+
+#Functions/Syntax to Generate the Dataframe/ Tables
+
+def generate_df(model, data, year):
+    data_copy = data.copy()
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+dfs=[]
+for year in years:
+    df1 = pd.concat([generate_df(model,data1, year) for model in list_models], ignore_index = True)
+    dfs.append(df1)
+
+#Concatenate all DataFrames or Tables created
+final_df = pd.concat(dfs, ignore_index = True)
+                     
+#Display or Print 
+final_df
