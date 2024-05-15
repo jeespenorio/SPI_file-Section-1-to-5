@@ -1,0 +1,196 @@
+import pandas as pd
+
+#initialize data
+
+data1 = {
+    'Make':['atv/utv/snow'],
+    'Model':['All Model'],
+    'Vendor Code':['NACH'],
+    'Vendor Name':['NACHMAN INTERNATIONAL CO. LTD'],
+    'Component':['Gas Shock Assembly'],
+    'Typesof Vehicle': ['SKI'],
+    
+    'MPN':['999644'],
+    
+    'AD LIST ITEM NUMBER':['SU-08019S'],
+    
+    'Vendor Notes':['OEM# 5020618, 5630580, 7041496, 7041503, 7041523, 7041539,7041697, 7041398-067, 7041489-067, 7041550-067, 7041551-067, 7041552-067, 7041683-067 OPEN : 406 MM (16")  CLOSED : 292 MM(11-1/2")']
+}
+
+#For this column = 'Model':['All Model']
+#List All Models
+list_models = [
+
+'500 Classic Touring',
+'600 Classic',
+'600 Classic Touring',
+'700 Classic Touring',
+'800 Classic Touring',
+'Classic Touring',
+'XLT SP',
+'XLT',
+'XLT SKS',
+'XLT SP LT',
+'XLT SP Xtra',
+'XLT Touring',
+'XLT RMK',
+'XLT Classic',
+'XLT LTD',
+'XLT LTD SP',
+'600 INDY',
+'600 INDY SP',
+'800 INDY SP',
+'550 INDY',
+'550 INDY 144',
+'550 INDY LXT',
+'550 INDY Adventure 144',
+'550 INDY Voyager',
+'600 INDY Voyager',
+'120 INDY',
+'800 INDY SP LE',
+'600 INDY SP LE',
+'550 INDY Voyageur 144',
+'550 INDY Voyageur 155',
+'550 INDY Adventure 155',
+'600 INDY Voyageur',
+'600 INDY SP TD Series LE',
+'550 INDY LXT 144 White Lightning',
+'550 INDY LXT 144 Turbo Silver',
+'340 Indy',
+'550 INDY LXT 144 Indy Red',
+'550 INDY LXT 144 Blue Fire Metallic',
+'550 INDY LXT Sonic Blue',
+'550 INDY LXT 144 Vogue Silver',
+'550 INDY LXT Northstar Edition',
+'850 INDY XC 129',
+'800 INDY XC 129',
+'600 INDY XC 129',
+'600 INDY SP 129',
+'550 INDY LXT Sunset Red',
+'550 INDY LXT White Lightning',
+'INDY EVO',
+'INDY EVO ES',
+'850 INDY XC 137',
+'800 INDY XC 137',
+'600 INDY XC 137',
+'850 INDY XCR',
+'800 INDY XCR',
+'600 INDY XCR',
+'850 INDY Adventure 137',
+'800 INDY Adventure 137',
+'600 INDY Adventure 137',
+'600 INDY SP 137',
+'650 INDY VR1 137',
+'850 INDY VR1 137',
+'850 INDY VR1 129',
+'650 INDY VR1 129',
+'650 INDY XC Launch Edition 137',
+'850 INDY XC Launch Edition 137',
+'650 INDY XC Launch Edition 129',
+'850 INDY XC Launch Edition 129',
+'550 INDY EVO 121',
+'650 INDY Adventure 137',
+'650 INDY XCR 136',
+'650 INDY XCR 128',
+'650 INDY XC 137',
+'650 INDY XC 129',
+'850 INDY XCR 136',
+'550 INDY Sport 121',
+'ProStar S4 INDY Adventure 137',
+'ProStar S4 INDY XC 129',
+'Patriot Boost INDY VR1 129',
+'650 INDY SP 137',
+'650 INDY Adventure X2 137',
+'ProStar S4 INDY Adventure X2 137',
+'ProStar S4 INDY XC 137',
+'Patriot Boost INDY VR1 137',
+'850 INDY XCR 128',
+'Ultra RMK',
+'Ultra SKS',
+'Ultra SP',
+'Ultra',
+'Ultra SPX',
+'Ultra SPX SE',
+'Ultra Touring',
+'Super Sport',
+'Sport Touring',
+'Sport',
+'Sport GT',
+'Sport SKS',
+'Tran Sport',
+'Sport Touring ES',
+'Super Sport X',
+'Supersport M-10',
+'550 SwitchBack Sport 144',
+'600 Dragon SP',
+'800 Dragon SP',
+'550 Transport',
+'500 XC SP',
+'600 XC SP',
+'700 XC SP',
+'800 XC SP',
+'120 XC SP',
+'800 RMK SP 144',
+'Trail SP',
+'Sprint',
+'Sprint ES',
+'500 SP',
+'440 XCR SP',
+'500 SP EFI',
+'500 SPX',
+'600 XCR SP',
+'XCF SP',
+'440 XC SP',
+'800 RMK SP 151',
+'600 SwitchBack SP 144',
+'800 Titan SP 155',
+'650 SwitchBack SP 146',
+'500 XC',
+'800 XCR',
+'120 XCR',
+'600 XC Deluxe',
+'700 XC Deluxe',
+'XC 400',
+'440 XCR',
+'600 XCR',
+'600 XC',
+'440 XC',
+'700 XC',
+'700 XCR',
+'XCF',
+'600 XCR SE',
+'800 XC',
+'800 Rush XCR',
+'600 Rush XCR',
+'800 Titan XC 155',
+'800 SwitchBack XCR',
+'600 SwitchBack XCR',
+'850 SwitchBack XCR',
+'850 Rush XCR',
+'650 SwitchBack XC 146',
+'850 SwitchBack XC 146'
+
+]
+
+#Range of Years in Raw Data given
+
+years = list(range(1997,2005))
+
+#Functions/Syntax to Generate the Dataframe/ Tables
+
+def generate_df(model, data, year):
+    data_copy = data.copy()
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+dfs=[]
+for year in years:
+    df1 = pd.concat([generate_df(model,data1, year) for model in list_models], ignore_index = True)
+    dfs.append(df1)
+
+#Concatenate all DataFrames or Tables created
+final_df = pd.concat(dfs, ignore_index = True)
+                     
+#Display or Print 
+final_df
