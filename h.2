@@ -1,0 +1,142 @@
+import pandas as pd
+
+#initialize data
+
+data1 = {
+    'Make':['atv/utv/snow'],
+    'Model':['All Model'],
+    'Vendor Code':['NACH'],
+    'Vendor Name':['NACHMAN INTERNATIONAL CO. LTD'],
+    'Component':['Gas Shock Assembly'],
+    'Typesof Vehicle': ['FRONT TRACK'],
+    
+    'MPN':['1101066'],
+    
+    'AD LIST ITEM NUMBER':['SU-04289S'],
+    
+    'Vendor Notes':['OEM# 503192266; OPEN:325MM (12.79"),STROKE:104MM (4.09"). SHAFT 13MM (0.51"). TUBE 45.1MM (1.77"). TOP:HOLE 19.5MM (0.77") /W 25.2MM 0.99"). BOTTOM:HOLE 23.8MM (0.94") /W 20.2MM (0.79").']
+}
+
+#For this column = 'Model':['All Model']
+#List All Models
+list_models = [
+
+
+'Expedition 550F Sport',
+'Expedition Sport V-800',
+'Expedition TUV 600',
+'Expedition TUV V-800',
+'Expedition V-1300',
+'Expedition TUV V-1000',
+'Expedition 550F',
+'Expedition 4-Tec',
+'Expedition 800 TUV Yeti II',
+'Expedition 600 TUV Yeti II',
+'Expedition 600 TUV REV-XU',
+'Expedition 600 SE',
+'Expedition 1200 SE',
+'Expedition 600',
+'Expedition 1200',
+'Expedition SE 4-TEC 1200',
+'Expedition LE 4-TEC 1200',
+'Expedition SE E-TEC 600 HO',
+'Expedition LE E-TEC 600 HO',
+'Expedition Sport 600 ACE',
+'Expedition Sport 550F',
+'Expedition Sport ACE 900',
+'Expedition SE ACE 900',
+'Expedition LE ACE 900',
+'Expedition Xtreme E-TEC 800R',
+'Expedition SWT ACE 900',
+'Summit X with Expert Package E-TEC 850 154',
+'Summit X with Expert Package E-TEC 850 165',
+'Expedition Xtreme E-TEC 850',
+'Expedition SE E-TEC 600R',
+'Expedition SE ACE 900 Turbo',
+'Expedition LE E-TEC 600R',
+'Expedition LE ACE 900 Turbo',
+'Summit X with Expert Package E-TEC 850 175',
+'Summit X with Expert Package E-TEC 850 Turbo 154',
+'Summit X with Expert Package E-TEC 850 Turbo 165',
+'Summit X with Expert Package E-TEC 850 Turbo 175',
+'Expedition SWT E-TEC 600R',
+'Expedition SWT ACE 900 Turbo',
+'Expedition Sport 600 EFI',
+'Summit X w/ Expert Package E-TEC 850 Turbo 154 2.5',
+'Summit X with Expert Package E-TEC 850 154 2.5',
+'Expedition LE ACE 900 Turbo R',
+'Expedition SE ACE 900 Turbo R',
+'Expedition SE E-TEC 850',
+'Expedition Xtreme ACE 900 Turbo R',
+'Summit X with Expert Package E-TEC 850 Turbo R 154',
+'Summit X with Expert Package E-TEC 850 Turbo R 165',
+'Summit X with Expert Package E-TEC 850 Turbo R 175',
+'Grand Touring 600',
+'Grand Touring 600 SE',
+'Grand Touring 600 Sport',
+'Grand Touring 600 GS',
+'Grand Touring 600 LE',
+'Renegade Adrenaline ACE 900',
+'MX Z TNT ACE 900',
+'GSX LE ACE 900',
+'Grand Touring LE ACE 900',
+'Skandic SWT ACE 900',
+'Skandic WT ACE 900',
+'Renegade Enduro ACE 900',
+'MX Z Blizzard ACE 900',
+'Grand Touring SE ACE 900',
+'Grand Touring Limited ACE 900',
+'Grand Touring Limited ACE 900 Turbo',
+'Grand Touring Sport ACE 900',
+'Renegade Adrenaline ACE 900 Turbo',
+'Renegade Enduro ACE 900 Turbo',
+'Renegade X ACE 900 Turbo',
+'Renegade X-RS ACE 900 Turbo',
+'Renegade Adrenaline ACE 900 Turbo R',
+'Renegade X-RS ACE 900 Turbo R',
+'Mach Z ACE 900 Turbo R',
+'Renegade Enduro ACE 900 Turbo R',
+'Grand Touring Limited ACE 900 Turbo R',
+'Renegade X ACE 900 Turbo R',
+'Skandic LE ACE 900',
+'Skandic SE ACE 900',
+'MX Z 600 Adrenaline',
+'Summit 600 Adrenaline',
+'Renegade 600 Adrenaline',
+'Grand Touring Sport 600 ACE',
+'MX Z TNT 600 ACE',
+'Renegade Sport 600 ACE',
+'MX Z Sport 600 ACE',
+'Skandic WT 600 ACE',
+'Skandic Tundra LT 600 ACE',
+'Skandic LE 600 ACE',
+'Skandic 550F Tundra LT',
+'Skandic 550F Tundra Sport',
+'Skandic Tundra Xtreme',
+'Skandic 550F Tundra'
+
+
+]
+
+#Range of Years in Raw Data given
+
+years = list(range(2010,2023))
+
+#Functions/Syntax to Generate the Dataframe/ Tables
+
+def generate_df(model, data, year):
+    data_copy = data.copy()
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+dfs=[]
+for year in years:
+    df1 = pd.concat([generate_df(model,data1, year) for model in list_models], ignore_index = True)
+    dfs.append(df1)
+
+#Concatenate all DataFrames or Tables created
+final_df = pd.concat(dfs, ignore_index = True)
+                     
+#Display or Print 
+final_df
