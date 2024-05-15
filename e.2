@@ -1,0 +1,162 @@
+import pandas as pd
+
+#initialize data
+
+data1 = {
+    'Make':['atv/utv/snow'],
+    'Model':['All Model'],
+    'Vendor Code':['NACH'],
+    'Vendor Name':['NACHMAN INTERNATIONAL CO. LTD'],
+    'Component':['Gas Shock Assembly'],
+    'Typesof Vehicle': ['SKI'],
+    
+    'MPN':['999645'],
+    
+    'AD LIST ITEM NUMBER':['SU-08029S'],
+    
+    'Vendor Notes':['"OEM# 503141600, 505071202,505071224, 505071257, 505071264, 505071435,505071458, 505071640, 505071113, 404070847, 505071202, 706200785,REF# 08-180OPEN:455MM (17.91""), STROKE:142MM (5.59""), CLOSE:313MM (12.32), TOP: HOLE 10MM (0.39""), WIDTH 31MM (1.22""). BOTTOM: HOLE 10MM (0.39""), WIDTH 31MM (1.22""), TUBE OD45MM (1.77""), RETAINER OD 65 MM (2.56"")."']
+}
+
+#For this column = 'Model':['All Model']
+#List All Models
+list_models = [
+
+
+'Grand Touring 500',
+'Grand Touring 500 Fan',
+'Grand Touring 500 Sport',
+'Grand Touring 600',
+'Grand Touring 600 SE',
+'Grand Touring 600 Sport',
+'Grand Touring 600 GS',
+'Grand Touring 600 LE',
+'Grand Touring 700',
+'Grand Touring 700 GS',
+'Grand Touring 700 Sport',
+'Grand Touring 700 SE',
+'Grand Touring 800 SE',
+'GSX 500SS Sport',
+'GSX 600 Limited',
+'GSX 600 Limited Touring',
+'GSX 600 Sport',
+'GSX 600',
+'GSX 600 Sport SDI',
+'GSX 800 Limited',
+'GSX 800',
+'GTX 500SS Sport',
+'GTX 550 Fan',
+'GTX 600 Limited',
+'GTX 600 Sport',
+'GTX 600',
+'Legend Touring V-800',
+'Legend Trail V-800',
+'Legend 500 Fan',
+'Legend 500 Sport',
+'Legend 600 Sport',
+'Legend 700 Sport',
+'Legend 600 GS',
+'Legend 600 SE',
+'Legend 700 GS',
+'Legend 800 SE',
+'Legend 700 SE',
+'Legend 800 SE SDI',
+'MX Z 800 Renegade',
+'MX Z 500 X',
+'MX Z 600',
+'MX Z 600RS',
+'MX Z 800 R Adrenaline',
+'MX Z 800R Renegade',
+'MX Z 600 Renegade X',
+'MX Z 800R Renegade X',
+'MX Z 500 TNT',
+'MX Z 500 Adrenaline',
+'MX Z 600 Blizzard',
+'MX Z 800 Blizzard',
+'MX Z 800 Renegade X',
+'MX Z 500',
+'MX Z 700',
+'MX Z 800',
+'MX Z 700 Adrenaline',
+'MX Z 600 Adrenaline',
+'MX Z 800 Adrenaline',
+'MX Z 700 Trail',
+'MX Z 500 Trail',
+'MX Z 800 Trail',
+'MX Z 600 Trail',
+'MX Z 700 X',
+'MX Z 600 X',
+'MX Z 800 X',
+'MX Z 500 Fan',
+'MX Z 500 Sport',
+'MX Z 600 Sport',
+'MX Z 700 Sport',
+'MX Z 800 Sport',
+'MX Z 600 R Sport',
+'MX Z 700 R Sport',
+'MX Z 800 R Sport',
+'MX Z 500 R Sport',
+'MX Z 600 Renegade',
+'MX Z 700 Renegade',
+'MX Z 600 R X',
+'MX Z 700 R X',
+'MX Z 800 R X',
+'MX Z 800 R',
+'MX Z 500 Renegade',
+'MX Z 500 R Trail',
+'MX Z 600 TNT',
+'MX Z 600 X-RS',
+'MX Z 800 X-RS',
+'MX Z X-RS E-TEC 800R',
+'MX Z X-RS 800R',
+'MX Z X E-TEC 800R',
+'MX Z X-RS E-TEC 600 HO',
+'MX Z X 4-TEC 1200',
+'MX Z X E-TEC 600 HO',
+'MX Z TNT 800R Power TEC',
+'MX Z TNT E-TEC 600 HO',
+'MX Z TNT 600 ACE',
+'MX Z Sport 600 ACE',
+'MX Z X-RS 600',
+'MX Z TNT E-TEC 800R',
+'MX Z TNT 600 Carb',
+'MX Z Sport 600 Carb',
+'MX Z TNT ACE 900',
+'MX Z 600 50th Anniversary',
+'MX Z Blizzard E-TEC 600 HO',
+'MX Z Blizzard E-TEC 800R',
+'MX Z 600 TNT Early Edition',
+'MX Z X E-TEC 850',
+'MX Z TNT E-TEC 850',
+'MX Z X-RS Iron Dog E-TEC 600 HO',
+'MX Z Blizzard E-TEC 600R',
+'MX Z TNT E-TEC 600R',
+'MX Z X E-TEC 600R',
+'MX Z X-RS E-TEC 600R',
+'MX Z Sport 600 EFI',
+'MX Z Neo 600 EFI-40',
+'MX Z Neo+ 600 EFI-55'
+
+]
+
+#Range of Years in Raw Data given
+
+years = list(range(2002,2006))
+
+#Functions/Syntax to Generate the Dataframe/ Tables
+
+def generate_df(model, data, year):
+    data_copy = data.copy()
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+dfs=[]
+for year in years:
+    df1 = pd.concat([generate_df(model,data1, year) for model in list_models], ignore_index = True)
+    dfs.append(df1)
+
+#Concatenate all DataFrames or Tables created
+final_df = pd.concat(dfs, ignore_index = True)
+                     
+#Display or Print 
+final_df
