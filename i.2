@@ -1,0 +1,96 @@
+import pandas as pd
+
+#initialize data
+
+data1 = {
+    'Make':['atv/utv/snow'],
+    'Model':['All Model'],
+    'Vendor Code':['NACH'],
+    'Vendor Name':['NACHMAN INTERNATIONAL CO. LTD'],
+    'Component':['Gas Shock Assembly'],
+    'Typesof Vehicle': ['FRONT TRACK'],
+    
+    'MPN':['1101067'],
+    
+    'AD LIST ITEM NUMBER':['SU-04328S'],
+    
+    'Vendor Notes':['OEM# 2603-719, 2704-986, 3604-200, 3604-273, 3604-906, 3703-805; OPEN:317.3 MM (12.49") , STROKE:99MM (3.90");TUBE:38.1 MM (1.50"), SHAFT ;.D:12.5MM (0.49") ;SPRING:O.D.:75MM (2.95")/WIRE O.D.:7.5MM (0.29"). ;TOP/BOTTOM HOLE:15.9/22.5MM (0.63" / 0.89") ;TOP/BOTTOM ;WIDTH:22.8/18.7MM (0.87" / 0.74"); WITH 1PC BUSHING']
+}
+
+#For this column = 'Model':['All Model']
+#List All Models
+list_models = [
+
+
+'Bearcat 7000 XT',
+'Bearcat 7000 XT GS',
+'Blast M 4000',
+'Blast M 4000 Special Edition',
+'Blast ZR 4000',
+'Blast LT 4000',
+'Blast XR 4000 Touring',
+'Blast XR 4000',
+'Blast M LTD 4000',
+'Norseman 3000',
+'Norseman 6000 ES',
+'Norseman 3000 ES',
+'Norseman X 6000',
+'Pantera 3000',
+'Pantera 6000 ES',
+'ZR 3000 LXR',
+'ZR 3000',
+'ZR 6000 El Tigre ES',
+'ZR 6000 LXR ES 129',
+'ZR 6000 LXR ES 137',
+'ZR 6000 Sno Pro ES 129',
+'ZR 6000 Sno Pro ES 137',
+'ZR 6000 Limited ES 129',
+'ZR 6000 Limited ES 137',
+'ZR 6000 El Tigre ES 129',
+'ZR 6000 El Tigre ES 137',
+'ZR 6000 RR ES 129',
+'ZR 6000 RR ES 137',
+'ZR 6000 ES 129',
+'ZR 6000 ES 137',
+'ZR 6000 Limited ES 129 iACT',
+'ZR 6000 Limited ES 137 iACT',
+'ZR 6000 Limited ES ATAC 137',
+'ZR 6000 R-XC ES',
+'ZR 7000 LXR 129',
+'ZR 7000 Sno Pro 129',
+'ZR 7000 Limited 129',
+'ZR 7000 El Tigre',
+'ZR 7000 RR',
+'ZR 7000 LXR 137',
+'ZR 7000 Sno Pro 137',
+'ZR 7000 Limited 137',
+'ZR 7000 129',
+'ZR 7000 137',
+'ZR 7000 Limited 137 iACT'
+
+
+
+]
+
+#Range of Years in Raw Data given
+
+years = list(range(2019,2024))
+
+#Functions/Syntax to Generate the Dataframe/ Tables
+
+def generate_df(model, data, year):
+    data_copy = data.copy()
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+dfs=[]
+for year in years:
+    df1 = pd.concat([generate_df(model,data1, year) for model in list_models], ignore_index = True)
+    dfs.append(df1)
+
+#Concatenate all DataFrames or Tables created
+final_df = pd.concat(dfs, ignore_index = True)
+                     
+#Display or Print 
+final_df
