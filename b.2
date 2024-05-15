@@ -1,0 +1,61 @@
+import pandas as pd
+
+#initialize data
+
+data1 = {
+    'Make':['atv/utv/snow'],
+    'Model':['All Model'],
+    'Vendor Code':['NACH'],
+    'Vendor Name':['NACHMAN INTERNATIONAL CO. LTD'],
+    'Component':['Gas Shock Assembly'],
+    'Typesof Vehicle': ['SKI'],
+    
+    'MPN':['999641'],
+    
+    'AD LIST ITEM NUMBER':['SU-08004S'],
+    
+    'Vendor Notes':['OEM# 5020618, 5630580, 7042107, 7041551-067; OPEN:440 MM (17.32"). STROKE:135 MM (5.31"); RETAINER:56/73MM (2.20" /  2.87"). TOP/BOTTOM HOLE:10.2MM (0.40") W:30MM (1.18"); SHAFT:12.5MM (0.49"). TUBE:45MM (1.77")']
+}
+
+#For this column = 'Model':['All Model']
+#List All Models
+list_models = [
+
+
+'600 RMK 144',
+'600 RMK 155',
+'600 RMK',
+'700 RMK 155',
+'700 RMK 144',
+'700 RMK 151',
+'700 RMK 159',
+'700 RMK',
+'800 RMK 144',
+'800 RMK 155',
+'800 RMK',
+'800 RMK Assault 155'
+
+]
+
+#Range of Years in Raw Data given
+
+years = list(range(2002,2011))
+
+#Functions/Syntax to Generate the Dataframe/ Tables
+
+def generate_df(model, data, year):
+    data_copy = data.copy()
+    data_copy['Model'] = model
+    data_copy['Year'] = year
+    return pd.DataFrame(data_copy)
+
+dfs=[]
+for year in years:
+    df1 = pd.concat([generate_df(model,data1, year) for model in list_models], ignore_index = True)
+    dfs.append(df1)
+
+#Concatenate all DataFrames or Tables created
+final_df = pd.concat(dfs, ignore_index = True)
+                     
+#Display or Print 
+final_df
